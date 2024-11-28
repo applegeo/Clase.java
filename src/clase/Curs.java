@@ -158,7 +158,7 @@ public class Curs<note> {
             }
         }
         medie = medie / x;
-        System.out.println("Media este: " + medie);
+        System.out.println("Media notelor este: " + medie);
 
     }
 
