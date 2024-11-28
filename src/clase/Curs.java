@@ -1,21 +1,27 @@
 package clase;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Curs<note> {
     public Profesor[] profesori;
     String nume;
     String descriere;
-    Student[] studenti;
-    int[] note;
+    Set<Student> studenti;
+    HashMap<Student, Integer > note;
 
     public Curs(String nume, String descriere,
                 Profesor profesori, Student[] studenti) {
         this.nume = nume;
         this.descriere = descriere;
         this.profesori = new Profesor[]{profesori};
-        this.studenti = studenti;
-        this.note = new int[studenti.length];
+        this.studenti = new HashSet<>();
+        for(Student student : studenti) {
+            this.studenti.add(student);
+        }
+        this.note = new HashMap<>();
     }
 
     public void UpdateProfesor(Profesor profesori) {
@@ -23,86 +29,21 @@ public class Curs<note> {
     }
 
 
-    public void AddStudent(Student student) {
-//lucrand cu array trebuie inserat
-        //  folosind un sir auxiliar
-        int noualungime = studenti.length + 1;
-        Student[] aux = new Student[noualungime];
-        int index = 0;
-        for (Student s : studenti) {
-            aux[index++] = s;
-        }
-//la final adaugam noul student pe ultimul
-        //index
-        aux[index] = student;
-//si realocam lista de studenti cu aux;
-        this.studenti = new Student[noualungime];
-        System.arraycopy(aux, 0, studenti, 0,
-                noualungime);
-    }
-
-    @Override
-    public String toString() {
-        return "Curs{" +
-                "profesori=" + Arrays.toString(profesori) +
-                ", nume='" + nume + '\'' +
-                ", descriere='" + descriere + '\'' +
-                ", studenti=" + Arrays.toString(studenti) +
-                ", note=" + Arrays.toString(note) +
-                '}';
-    }
-
     public void AdaugaStudent(Student deAdaugat) {
-
-        int lungimenoua = studenti.length + 1;
-        Student[] aux = new Student[lungimenoua];
-        int index = 0;
-        for (Student s : studenti) {
-            aux[index++] = s;
-        }
-        aux[index] = deAdaugat;
-        this.studenti = aux;
-
-        int indexn = 0;
-        int[] auxx = new int[lungimenoua];
-        for (int n : note) {
-            auxx[indexn++] = n;
-        }
-        auxx[indexn] = 0;
-        this.note = auxx;
+        studenti.add(deAdaugat);
     }
 
-    public void StergeStudent(String numeS, String prenS) {
-        int lungimenoua = studenti.length - 1;
-        Student[] aux = new Student[lungimenoua];
-        int[] auxx = new int[lungimenoua];
-        int index = 0;
-        for (int i = 0; i < studenti.length; i++) {
-            if (!studenti[i].nume.equals(numeS) && !studenti[i].prenume.equals(prenS)) {
-                aux[index] = studenti[i];
-                auxx[index] = note[i];
-                index++;
-
-            }
-        }
-        this.studenti = new Student[lungimenoua];
-        System.arraycopy(aux, 0, studenti, 0, lungimenoua);
-        this.note = new int[lungimenoua];
-        System.arraycopy(auxx, 0, note, 0, lungimenoua);
-
-
+    public void StergeStudent(Student deSters) {
+        studenti.remove(deSters);
     }
 
     public void ModificaStudent(Student stu, String nums, String prenums) {
+        studenti.remove(stu);
         stu.nume = nums;
         stu.prenume = prenums;
+        studenti.add(stu);
     }
 
-    public void AfiseazaStudenti() {
-        for (int i = 0; i < studenti.length; i++) {
-            System.out.println(studenti[i].nume + " " + studenti[i].prenume + " ");
-        }
-    }
 
     public void AdaugaProf(Profesor deAdaugat) {
 
@@ -133,36 +74,28 @@ public class Curs<note> {
     }
 
     public void ArataStud() {
-        for (int i = 0; i < studenti.length; i++) {
-            System.out.println(studenti[i].nume + " " + studenti[i].prenume+" "+note[i]);
+        for (Student s : studenti) {
+            System.out.println(s);
         }
     }
 
-    public void AdNota(int nota,  Student student) {
-
-        for (int i = 0; i < studenti.length; i++) {
-            if (studenti[i].equals(student))
-                note[i] = nota;
-        }
+    public void AdNota(int nota, Student student) {
+        note.put(student, nota);
     }
 
     public void CalculeazaMedia() {
-
-        double medie = 0;
-        int x = 0;
-        for (int i = 0; i < note.length; i++) {
-
-            if (note[i] != 0) {
-                medie = medie + note[i];
-                x++;
-            }
+        int med=0;
+        for(HashMap.Entry<Student, Integer> entry : note.entrySet()) {
+            med=med+entry.getValue();
         }
-        medie = medie / x;
-        System.out.println("Media notelor este: " + medie);
-
+        med=med/note.size();
+        System.out.println("Media studentilor este :"+ med);
     }
-
-
+    public void ArataNota() {
+       for(HashMap.Entry<Student, Integer> entry : note.entrySet()) {
+           System.out.println(entry.getKey() + " " + entry.getValue());
+       }
+    }
 }
 
 

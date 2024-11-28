@@ -23,44 +23,22 @@ public class Clase {
 
 
         ManagerCursuri cursuri = new ManagerCursuri();
-        cursuri.AdaugaCurs(curs);
-        cursuri.AfiseazaCursuriLaConsola();
-        curs.AdaugaStudent(stud);
-
-        System.out.println();
-        cursuri.AfiseazaCursuriLaConsola();
-        System.out.println();
-        curs.AdaugaProf(kys);
-        cursuri.AfiseazaCursuriLaConsola();
-        System.out.println();
-        curs.ArataStud();
-        curs.StergeStudent("Gunoiu", "George");
-        System.out.println();
-        curs.ArataStud();
         cursuri.AdaugaCurs(kiss);
+        kiss.ArataStud();
         System.out.println();
-        cursuri.AfiseazaCursuriLaConsola();
 
-        curs.AdNota(5, studenti[0]);
-        curs.AdNota(8, studenti[1]);
+        kiss.AdaugaStudent(stud);
+        kiss.ArataStud();
         System.out.println();
-        curs.ArataStud();
-        curs.CalculeazaMedia();
 
-        curs.ModificaStudent(studenti[0], "George", "Geass");
+        kiss.StergeStudent(stud);
+        kiss.ArataStud();
         System.out.println();
-        curs.ArataStud();
 
-        curs.StergeStudent("George", "Geass");
-        System.out.println();
-        curs.ArataStud();
-
-
-        curs.ModificaProf(prof , "Busbis", "Jabba");
-        cursuri.StergeCurs("The REssixtance");
-        cursuri.ArataNoteCursuri();
-        cursuri.AfiseazaCursuriLaConsola();
-
+        kiss.AdNota(6,studenti[0]);
+        kiss.AdNota(8,studenti[1]);
+        kiss.ArataNota();
+        kiss.CalculeazaMedia();
 
 
     }

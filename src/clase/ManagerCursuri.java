@@ -42,25 +42,14 @@ public class ManagerCursuri {
             System.out.println(c);
     }
     public void ArataNoteCursuri(){
-        for(int i=0;i< cursuri.length;i++){
-            System.out.println(cursuri[i].nume);
-            for(int j=0;j<cursuri[i].studenti.length;j++){
-                System.out.print(cursuri[i].studenti[j].nume+" "+cursuri[i].studenti[j].prenume);
-            }
-            System.out.println();
-            for(int j=0;j<cursuri[i].studenti.length;j++){
-                System.out.print(cursuri[i].note[j]);
-            }
 
-            System.out.println();
-        }
     }
 
-    public void ModificaCurs(Curs deModificat,String titluN,String descN,Profesor[] profiN,Student[] stuN){
-        deModificat.nume=titluN;
-        deModificat.descriere=descN;
-        deModificat.profesori=profiN;
-        deModificat.studenti=stuN;
-    }
+//    public void ModificaCurs(Curs deModificat,String titluN,String descN,Profesor[] profiN,Student[] stuN){
+//        deModificat.nume=titluN;
+//        deModificat.descriere=descN;
+//        deModificat.profesori=profiN;
+//        deModificat.studenti=stuN;
+//    }
 
 }

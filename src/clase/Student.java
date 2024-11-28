@@ -12,8 +12,7 @@ public class Student {
     }
     @Override
     public String toString() {
-        return "Student{" + "nume=" + nume + ", prenume=" + prenume + ", grupa=" +
-                grupa + '}';
+        return nume + " " + prenume;
     }
     public String getNume() {
         return nume;
